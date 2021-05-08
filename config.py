@@ -1,10 +1,7 @@
 import tweepy
 import os
-import logging
 
 from dotenv import load_dotenv
-
-logger = logging.getLogger()
 
 
 def create_api():
@@ -22,7 +19,6 @@ def create_api():
     try:
         api.verify_credentials()
     except Exception as e:
-        logger.error("Error creating API")
         raise e
 
     return api

@@ -1,10 +1,7 @@
 import tweepy
-import logging
 import time
 
 from config import create_api
-
-logger = logging.getLogger()
 
 
 def check_mentions(api, since_id):
@@ -28,7 +25,6 @@ def main():
     since_id = 1
     while True:
         since_id = check_mentions(api, since_id)
-        logger.info("Waiting...")
         time.sleep(5)
 
 
