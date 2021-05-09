@@ -14,6 +14,14 @@ def check_mentions(api, since_id):
         new_since_id = max(tweet.id, new_since_id)
         print(f"{tweet.user.name} says {tweet.text}")
 
+        if not tweet.user.following:
+            tweet.user.follow()
+
+        api.update_status(
+            status=f"Thanks for reaching out. We are not functional yet.",
+            in_reply_to_status_id=tweet.id,
+            auto_populate_reply_metadata=True,
+        )
     if not len(mentions):
         print("no mentions :-(")
 
