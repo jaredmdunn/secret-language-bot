@@ -14,10 +14,22 @@ def check_mentions(api, since_id):
 
     for tweet in mentions:
         new_since_id = max(tweet.id, new_since_id)
-        print(f"{tweet.user.name} says {tweet.full_text}")
 
-        # if not tweet.user.following and not tweet.user.id == user.id:
-        #     tweet.user.follow()
+        replies = tweepy.Cursor(
+            api.search,
+            q=f"to:{tweet.user.screen_name} from:{user.screen_name}",
+            result_type="recent",
+            timeout=999999,
+        ).items(1000)
+
+        for reply in replies:
+            if (
+                hasattr(reply, "in_reply_to_status_id")
+                and reply.in_reply_to_status_id == tweet.id
+            ):
+                return new_since_id
+
+        print(f"{tweet.user.name} says {tweet.full_text}")
 
         if not tweet.favorited:
             tweet.favorite()
