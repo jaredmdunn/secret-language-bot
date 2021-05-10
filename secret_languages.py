@@ -87,7 +87,7 @@ def translate_text(text, language="piglatin", keep_usernames=True, keep_hashtags
         # and the word begins with an @, return as is
         if keep_usernames and word[0] == "@":
             new_text += word + " "
-        if keep_hashtags and word[0] == "#":
+        elif keep_hashtags and word[0] == "#":
             new_text += word + " "
         # if the word is a url, return it as is
         elif validators.url(word):
