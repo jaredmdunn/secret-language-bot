@@ -1,3 +1,4 @@
+import validators
 from string import punctuation
 
 CONSONANTS = "bcdfghjklnmpqrstvwxyz"
@@ -13,59 +14,78 @@ def word_to_pig_latin(word):
         [string]: A word in Pig Latin
     """
 
-    # if the word is numeric, return it
-    if word.strip(punctuation).isnumeric():
+    # if word is not only letters, return the word as is
+    if not word.isalpha():
         return word
 
-    new_word = word
-    to_prepend = ""
+    new_word = word.lower()
     to_append = ""
     for index, letter in enumerate(word.lower()):
-        # if there is punctuation at the beginning of word,
-        # take them out to be added to the front of the word later
-        if letter in punctuation:
-            new_word = new_word[1:]
-            to_prepend += letter
-
         # if there are consonants at the beginning of the word,
         # take them out to be added to the end of the word later
         if letter in CONSONANTS:
             new_word = new_word[1:]
             to_append += letter
 
-        # when the letter hits a vowel (or the end of the word),
+        # when the letter hits a vowel,
         # add the pig latin ending "yay" or "ay"
-        if (
-            letter not in CONSONANTS
-            and letter not in punctuation
-            or index == len(word) - 1
-        ):
-            if not to_append and (index == 0):
-                to_append = "yay"
-            else:
+        if letter not in CONSONANTS:
+            if to_append:
                 to_append += "ay"
+            else:
+                to_append = "yay"
             break
-    # take off any punctuation on the end to be appended later
-    for letter in reversed(word.lower()):
-        if letter in punctuation:
-            new_word = new_word[:-1]
-            to_append += letter
+
+    return new_word + to_append
+
+
+def translate_word(word, language="piglatin"):
+    # keep any punctuation at the start of the word
+    # to add to the start of the translation
+    start_punctuation = ""
+    for char in word:
+        if char in punctuation:
+            start_punctuation += char
         else:
             break
 
-    new_word += to_append
+    # keep any punctuation at the end of the word
+    # to add the end of the translation
+    end_punctuation = ""
+    for char in reversed(word):
+        if char in punctuation:
+            end_punctuation = char + end_punctuation
+        else:
+            break
+
+    translation = word
+
+    if language == "piglatin":
+        translation = word_to_pig_latin(word.strip(punctuation))
+
     # if the word was capitalized, keep it that way
-    if word == word.capitalize():
-        new_word = new_word.capitalize()
+    if word.strip(punctuation) == word.strip(punctuation).capitalize():
+        translation = translation.capitalize()
+
     # if the word was all upper case, keep it that way
-    if word == word.upper():
-        new_word == new_word.upper()
-    return new_word
+    if word.strip(punctuation) == word.strip(punctuation).upper():
+        translation == translation.upper()
+
+    return start_punctuation + translation + end_punctuation
 
 
-def text_to_pig_latin(text):
+def translate_text(text, language="piglatin", keep_usernames=True):
     split_text = text.split()
     new_text = ""
     for word in split_text:
-        new_text += word_to_pig_latin(word) + " "
+        # if usernames shouldn't be translated
+        # and the word begins with an @, return as is
+        if keep_usernames and word[0] == "@":
+            new_text += word + " "
+        # if the word is a url, return it as is
+        elif validators.url(word):
+            new_text += word + " "
+        else:
+            new_text += translate_word(word, language=language) + " "
+
     return new_text.strip()
