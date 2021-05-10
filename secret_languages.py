@@ -3,6 +3,8 @@ from string import punctuation
 
 CONSONANTS = "bcdfghjklnmpqrstvwxyz"
 
+LANGUAGES = ["piglatin"]
+
 
 def word_to_pig_latin(word):
     """Converts an English word to Pig Latin.
