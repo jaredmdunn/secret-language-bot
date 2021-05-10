@@ -43,9 +43,14 @@ def translate_word(word, language="piglatin"):
     # keep any punctuation at the start of the word
     # to add to the start of the translation
     start_punctuation = ""
-    for char in word:
+    for index, char in enumerate(word):
         if char in punctuation:
             start_punctuation += char
+
+            # if the word is just punctuation,
+            # return it as is
+            if index == len(word) - 1:
+                return word
         else:
             break
 
@@ -69,18 +74,20 @@ def translate_word(word, language="piglatin"):
 
     # if the word was all upper case, keep it that way
     if word.strip(punctuation) == word.strip(punctuation).upper():
-        translation == translation.upper()
+        translation = translation.upper()
 
     return start_punctuation + translation + end_punctuation
 
 
-def translate_text(text, language="piglatin", keep_usernames=True):
+def translate_text(text, language="piglatin", keep_usernames=True, keep_hashtags=True):
     split_text = text.split()
     new_text = ""
     for word in split_text:
         # if usernames shouldn't be translated
         # and the word begins with an @, return as is
         if keep_usernames and word[0] == "@":
+            new_text += word + " "
+        if keep_hashtags and word[0] == "#":
             new_text += word + " "
         # if the word is a url, return it as is
         elif validators.url(word):
