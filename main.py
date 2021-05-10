@@ -19,6 +19,9 @@ def check_mentions(api, since_id):
         # if not tweet.user.following and not tweet.user.id == user.id:
         #     tweet.user.follow()
 
+        if not tweet.favorited:
+            tweet.favorite()
+
         language = "piglatin"
         for hashtag in tweet.entities["hashtags"]:
             if hashtag in LANGUAGES:
