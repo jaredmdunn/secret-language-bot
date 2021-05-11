@@ -61,7 +61,9 @@ def check_mentions(api, since_id):
 
 
 def main():
+    print("creating api")
     api = create_api()
+    print(api)
     since_id = 1
     while True:
         since_id = check_mentions(api, since_id)
