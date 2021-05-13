@@ -1,11 +1,11 @@
 import tweepy
 import os
 
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 
 def create_api():
-    load_dotenv()
+    # load_dotenv()
     API_KEY = os.getenv("API_KEY")
     API_SECRET_KEY = os.getenv("API_SECRET_KEY")
     ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
