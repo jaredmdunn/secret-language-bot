@@ -61,12 +61,15 @@ def check_mentions(api, since_id):
 
 
 def main():
-    print("creating api")
-    api = create_api()
-    print(api)
-    since_id = 1
-    while True:
-        since_id = check_mentions(api, since_id)
+    # print("creating api")
+    # api = create_api()
+    # print(api)
+    # since_id = 1
+    index = 1
+    while index < 60:
+        # since_id = check_mentions(api, since_id)
+        print(index)
+        index += 1
         time.sleep(5)
 
 
