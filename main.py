@@ -61,7 +61,6 @@ def check_mentions(api, since_id):
 
 
 def main():
-    print("creating api")
     api = create_api()
     user = api.me()
     print(user.screen_name)
