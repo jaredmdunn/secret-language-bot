@@ -15,8 +15,8 @@ def create_api():
     ACCESS_TOKEN_SECRET = os.getenv("ACCESS_TOKEN_SECRET")
     print("api key: ", API_KEY)
 
-    auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
-    auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+    auth = tweepy.OAuthHandler(consumer_key=API_KEY, consumer_secret=API_SECRET_KEY)
+    auth.set_access_token(key=ACCESS_TOKEN, secret=ACCESS_TOKEN_SECRET)
 
     api = tweepy.API(auth)
 
