@@ -22,6 +22,7 @@ def create_api():
 
     try:
         api.verify_credentials()
+        print("verified api credentials")
     except Exception as e:
         raise e
 
