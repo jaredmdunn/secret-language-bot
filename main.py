@@ -62,8 +62,10 @@ def check_mentions(api, since_id):
 
 def main():
     api = create_api()
-    user = api.me()
+    user = api.get_user("secretlangbot")
     print(user.screen_name)
+    # user = api.me()
+    # print(user.screen_name)
     # print(api)
     # since_id = 1
     # index = 1
