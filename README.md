@@ -20,7 +20,7 @@ The rules to Pig Latin are simple:
 The [Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher) is a classic cipher where each letter is substituted for another letter according to a shift parameter.
 
 ## Features To Add
-[ ] Randomly choosing a shift parameter for the Caesar Cipher and allowing users to indicate the shift parameter that they want.
-[ ] Eggy Peggy - A secret language where "egg" is added before the vowels of each syllable in a word.
-[ ] Other languages and ciphers.
-[ ] Direct messaging.
+- [ ] Randomly choosing a shift parameter for the Caesar Cipher and allowing users to indicate the shift parameter that they want.
+- [ ] Eggy Peggy - A secret language where "egg" is added before the vowels of each syllable in a word.
+- [ ] Other languages and ciphers.
+- [ ] Direct messaging.
