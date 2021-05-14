@@ -5,11 +5,11 @@ from string import punctuation, ascii_lowercase
 CONSONANTS = "bcdfghjklnmpqrstvwxz"
 
 # languages available to translate to
-LANGUAGES = ["piglatin", "ceasar"]
+LANGUAGES = ["piglatin", "caesar"]
 
 
-def word_to_ceasar(word, key=7):
-    """Encodes a word using the Ceasar cipher (https://en.wikipedia.org/wiki/Caesar_cipher)
+def word_to_caesar(word, key=7):
+    """Encodes a word using the Caesar cipher (https://en.wikipedia.org/wiki/Caesar_cipher)
 
     Args:
         word (string): The word to encode
@@ -103,8 +103,8 @@ def translate_word(word, language="piglatin"):
     if language == "piglatin":
         translation = word_to_pig_latin(word.strip(punctuation))
 
-    elif language == "ceasar":
-        translation = word_to_ceasar(word.strip(punctuation))
+    elif language == "caesar":
+        translation = word_to_caesar(word.strip(punctuation))
 
     # if the word was capitalized, keep it that way
     if word.strip(punctuation) == word.strip(punctuation).capitalize():
