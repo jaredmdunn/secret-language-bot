@@ -36,8 +36,8 @@ def check_mentions(api, since_id):
 
         language = "piglatin"
         for hashtag in tweet.entities["hashtags"]:
-            if hashtag in LANGUAGES:
-                language = hashtag
+            if hashtag["text"] in LANGUAGES:
+                language = hashtag["text"]
                 break
 
         response = translate_text(tweet.full_text, language=language)
