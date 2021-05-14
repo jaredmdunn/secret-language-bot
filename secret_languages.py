@@ -4,7 +4,19 @@ from string import punctuation
 # consonants not including 'y'
 CONSONANTS = "bcdfghjklnmpqrstvwxz"
 
-LANGUAGES = ["piglatin"]
+# languages available to translate to
+LANGUAGES = ["piglatin", "ceasar"]
+
+
+def word_to_ceasar(word, key=7):
+    """Encodes a word using the Ceasar cipher (https://en.wikipedia.org/wiki/Caesar_cipher)
+
+    Args:
+        word (string): The word to encode
+        key (int, optional): The number of characters to shift. Defaults to 7.
+    """
+
+    return word
 
 
 def word_to_pig_latin(word):
