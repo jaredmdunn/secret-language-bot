@@ -1,5 +1,6 @@
 import tweepy
 import time
+import random
 
 from config import create_api
 from secret_languages import translate_text, LANGUAGES
@@ -34,7 +35,7 @@ def check_mentions(api, since_id):
         if not tweet.favorited:
             tweet.favorite()
 
-        language = "piglatin"
+        language = random.choice(LANGUAGES)
         for hashtag in tweet.entities["hashtags"]:
             if hashtag["text"] in LANGUAGES:
                 language = hashtag["text"]
