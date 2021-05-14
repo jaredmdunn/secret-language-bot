@@ -1,7 +1,8 @@
 import validators
 from string import punctuation
 
-CONSONANTS = "bcdfghjklnmpqrstvwxyz"
+# consonants not including 'y'
+CONSONANTS = "bcdfghjklnmpqrstvwxz"
 
 LANGUAGES = ["piglatin"]
 
@@ -25,7 +26,7 @@ def word_to_pig_latin(word):
     for index, letter in enumerate(word.lower()):
         # if there are consonants at the beginning of the word,
         # take them out to be added to the end of the word later
-        if letter in CONSONANTS:
+        if letter in CONSONANTS or (letter == "y" and index == 0):
             new_word = new_word[1:]
             to_append += letter
 
