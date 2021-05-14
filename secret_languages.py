@@ -66,6 +66,15 @@ def word_to_pig_latin(word):
 
 
 def translate_word(word, language="piglatin"):
+    """Translates a word into the specified language.
+
+    Args:
+        word (string): The word to translate.
+        language (str, optional): The language to translate to. Defaults to "piglatin".
+
+    Returns:
+        [string]: The translated word.
+    """
     # keep any punctuation at the start of the word
     # to add to the start of the translation
     start_punctuation = ""
@@ -109,6 +118,17 @@ def translate_word(word, language="piglatin"):
 
 
 def translate_text(text, language="piglatin", keep_usernames=True, keep_hashtags=True):
+    """Translate text into a secret language.
+
+    Args:
+        text (string): The text to translate.
+        language (str, optional): The language to translate to. Defaults to "piglatin".
+        keep_usernames (bool, optional): Whether or not keep usernames (twitter handles). Defaults to True.
+        keep_hashtags (bool, optional): Whether or not to keep hashtags. Defaults to True.
+
+    Returns:
+        [type]: [description]
+    """
     split_text = text.split()
     new_text = ""
     for word in split_text:
