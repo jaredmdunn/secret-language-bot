@@ -1,5 +1,5 @@
 import validators
-from string import punctuation
+from string import punctuation, ascii_lowercase
 
 # consonants not including 'y'
 CONSONANTS = "bcdfghjklnmpqrstvwxz"
@@ -16,7 +16,18 @@ def word_to_ceasar(word, key=7):
         key (int, optional): The number of characters to shift. Defaults to 7.
     """
 
-    return word
+    key_str = ascii_lowercase[0:key]
+    new_alphabet = ascii_lowercase[key:] + key_str
+
+    encoder_dict = {}
+    for index, letter in enumerate(ascii_lowercase):
+        encoder_dict[letter] = new_alphabet[index]
+
+    new_word = ""
+    for letter in word.lower():
+        new_word += encoder_dict[letter]
+
+    return new_word
 
 
 def word_to_pig_latin(word):
@@ -82,6 +93,9 @@ def translate_word(word, language="piglatin"):
 
     if language == "piglatin":
         translation = word_to_pig_latin(word.strip(punctuation))
+
+    elif language == "ceasar":
+        translation = word_to_ceasar(word.strip(punctuation))
 
     # if the word was capitalized, keep it that way
     if word.strip(punctuation) == word.strip(punctuation).capitalize():
