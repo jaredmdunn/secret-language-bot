@@ -2,6 +2,8 @@
 A Twitter bot that encrypts @s into a "secret language" (e.g. Pig Latin)
 Check it out at [@secretlangbot](https://twitter.com/secretlangbot)!
 
+_Not currently running_
+
 ## Current Features
 Mention @secretlangbot and it will reply to your tweet by translating your tweet into a randomly selected "secret language".
 
